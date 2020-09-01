@@ -1,0 +1,41 @@
+﻿FOR SETTING UP HTTPS AND APPSECRETS
+
+
+Subject: RE: Docker for ASP.NET Core 2.1 Preview 2
+
+. Provided that your docker file and docker compose look like the ones that VS generates when you add VS support, there are a couple of steps you need to take to enable it manually.
+In essence, you need to get the HTTPS development certificate from your machine into the container image as a pfx file in a special location on disk that we recognize and provide the password through user.
+
+• Modify the dockerfile to expose the port 443 with
+• EXPOSE 443
+• Modify the docker-compose override file to map ports, volumes and environment variables as follows:
+environment:
+- ASPNETCORE_ENVIRONMENT=Development
+- ASPNETCORE_URLS=https://+;http://+
+- ASPNETCORE_HTTPS_PORT=44349
+ports:
+# Replace the values on the left by the values on your launchSettings.json
+- "51217:80"
+- "44349:443"
+volumes:
+- ${HOME}/.microsoft/usersecrets/:/root/.microsoft/usersecrets
+- ${HOME}/.aspnet/https:/root/.aspnet/https/
+• Export the HTTPS certificate into a PFX file using the dev-certs global tool to ${HOME}/.aspnet/https/<>.pfx using a password of your choice (dotnet dev-certs https -ep ${HOME}/.aspnet/https/ -p <>)
+• Add the password to the user secrets in your project.
+• Add the password to the user secrets in your project (dotnet user-secrets set "Kestrel:Certificates:Development:Password" "<>"
+
+per Javier:
+For setting up a non development certificate on kestrel the instructions are the same as for the development case (obviously you need to provide the certificate) and you need to set the path to the certificate in a configuration key.
+"Kestrel:Certificates:Default:Path"
+
+https://github.com/dotnet/AspNetCore.Docs/issues/6199
+
+
+ports:
+      - "8000:80"
+
+ports:
+        - "27017:27017"
+
+
+       maps the port on our local machine :  to the port inside the container
