@@ -2,10 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Basket.API.Data;
 using Basket.API.Data.Interfaces;
 using Basket.API.Repositories;
 using Basket.API.Repositories.Interfaces;
+using EventBusRabbitMQ;
+using EventBusRabbitMQ.Producer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RabbitMQ.Client;
 using StackExchange.Redis;
 
 namespace Basket.API
@@ -42,6 +46,35 @@ namespace Basket.API
 
             services.AddScoped<IBasketContext, BasketContext>();
             services.AddTransient<IBasketRepository, BasketRepository>();
+            services.AddTransient<EventBusRabbitMqProducer>(); 
+            services.AddSingleton<IRabbitMQConnection>(sp => {
+
+                string userName = Configuration["EventBus:UserName"];
+                string password = Configuration["EventBus:Password"];
+
+                var factory = new ConnectionFactory()
+                {
+                    HostName = Configuration["EventBus:HostName"]
+
+                 };
+
+                if (!string.IsNullOrWhiteSpace(userName))
+                {
+                    factory.UserName = userName;
+                }
+
+                if (!string.IsNullOrWhiteSpace(password))
+                {
+                    factory.Password = password;
+                }
+
+                return new RabbitMQConnection(factory);
+
+            });
+
+
+            services.AddAutoMapper(typeof(Startup));
+
 
 
             services.AddSwaggerGen(c =>

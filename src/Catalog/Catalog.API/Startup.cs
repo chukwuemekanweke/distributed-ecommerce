@@ -7,6 +7,8 @@ using Catalog.API.Data.Interfaces;
 using Catalog.API.Repositiories;
 using Catalog.API.Repositiories.Interfaces;
 using Catalog.API.Settings;
+using EventBusRabbitMQ;
+using EventBusRabbitMQ.Producer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +18,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
+using RabbitMQ.Client;
 
 namespace Catalog.API
 {
@@ -42,6 +45,32 @@ namespace Catalog.API
 
             services.AddScoped<ICatalogContext, CatalogContext>();
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddTransient<EventBusRabbitMqProducer>();
+
+            services.AddSingleton<IRabbitMQConnection>(sp => {
+
+                string userName = Configuration["EventBus:UserName"];
+                string password = Configuration["EventBus:Password"];
+
+                var factory = new ConnectionFactory()
+                {
+                    HostName = Configuration["EventBus:HostName"]
+
+                };
+
+                if (!string.IsNullOrWhiteSpace(userName))
+                {
+                    factory.UserName = userName;
+                }
+
+                if (!string.IsNullOrWhiteSpace(password))
+                {
+                    factory.Password = password;
+                }
+
+                return new RabbitMQConnection(factory);
+
+            });
 
             services.AddSwaggerGen(c =>
             {
