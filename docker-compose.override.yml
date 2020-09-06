@@ -19,7 +19,7 @@ services:
         - "6379:6379"
 
   rabbitmq:
-    container_name: basketdb
+    container_name: rabbitmq
     restart: always    
     ports:
         - "5672:5672"
