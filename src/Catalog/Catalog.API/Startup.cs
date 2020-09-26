@@ -46,15 +46,15 @@ namespace Catalog.API
             services.AddScoped<ICatalogContext, CatalogContext>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddTransient<EventBusRabbitMqProducer>();
-
+            string userName = Configuration["EventBus:UserName"];
+            string password = Configuration["EventBus:Password"];
+            string hostName = Configuration["EventBus:HostName"];
             services.AddSingleton<IRabbitMQConnection>(sp => {
 
-                string userName = Configuration["EventBus:UserName"];
-                string password = Configuration["EventBus:Password"];
-
+                
                 var factory = new ConnectionFactory()
                 {
-                    HostName = Configuration["EventBus:HostName"]
+                    HostName = hostName
 
                 };
 
