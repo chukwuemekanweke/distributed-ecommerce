@@ -46,17 +46,19 @@ namespace Basket.API
 
             services.AddScoped<IBasketContext, BasketContext>();
             services.AddTransient<IBasketRepository, BasketRepository>();
-            services.AddTransient<EventBusRabbitMqProducer>(); 
+            services.AddTransient<EventBusRabbitMqProducer>();
+
+            string userName = Configuration["EventBus:UserName"];
+            string password = Configuration["EventBus:Password"];
+            string hostName = Configuration["EventBus:HostName"];
+
+
             services.AddSingleton<IRabbitMQConnection>(sp => {
-
-                string userName = Configuration["EventBus:UserName"];
-                string password = Configuration["EventBus:Password"];
-
                 var factory = new ConnectionFactory()
                 {
-                    HostName = Configuration["EventBus:HostName"]
+                    HostName = hostName
 
-                 };
+                };
 
                 if (!string.IsNullOrWhiteSpace(userName))
                 {

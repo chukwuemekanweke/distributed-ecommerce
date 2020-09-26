@@ -49,9 +49,8 @@ namespace Catalog.API
             string userName = Configuration["EventBus:UserName"];
             string password = Configuration["EventBus:Password"];
             string hostName = Configuration["EventBus:HostName"];
-            services.AddSingleton<IRabbitMQConnection>(sp => {
 
-                
+            services.AddSingleton<IRabbitMQConnection>(sp => {
                 var factory = new ConnectionFactory()
                 {
                     HostName = hostName

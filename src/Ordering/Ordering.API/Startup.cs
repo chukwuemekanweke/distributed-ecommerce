@@ -69,15 +69,15 @@ namespace Ordering.API
 
 
             services.AddTransient<EventBusRabbitMQConsumer>();
+            string userName = Configuration["EventBus:UserName"];
+            string password = Configuration["EventBus:Password"];
+            string hostName = Configuration["EventBus:HostName"];
+
             services.AddSingleton<IRabbitMQConnection>(sp => {
-
-                string userName = Configuration["EventBus:UserName"];
-                string password = Configuration["EventBus:Password"];
-
+                             
                 var factory = new ConnectionFactory()
                 {
-                    HostName = Configuration["EventBus:HostName"]
-
+                    HostName = hostName
                 };
 
                 if (!string.IsNullOrWhiteSpace(userName))
