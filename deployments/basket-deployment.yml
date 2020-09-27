@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: basket-deployment
+spec: 
+  
+  replicas: 1
+  selector: 
+    matchLabels: 
+      component: basket
+  template: 
+    metadata: 
+      labels: 
+        component: basket
+    spec: 
+      containers: 
+        - 
+          image: chukwuemekanweke/basketapi
+          name: basketapi
+          ports: 
+            - 
+              containerPort: 80
