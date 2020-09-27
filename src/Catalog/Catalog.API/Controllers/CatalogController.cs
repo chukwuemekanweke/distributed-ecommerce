@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Catalog.API.Controllers
 {
-    [Route("api/v1/[controller]")]
+    [Route("api/v1/catalog")]
     [ApiController]
     public class CatalogController : ControllerBase
     {
