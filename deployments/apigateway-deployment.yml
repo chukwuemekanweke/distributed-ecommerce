@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: apigateway-deployment
+spec: 
+  
+  replicas: 1
+  selector: 
+    matchLabels: 
+      component: apigateway
+  template: 
+    metadata: 
+      labels: 
+        component: apigateway
+    spec: 
+      containers: 
+        - 
+          image: chukwuemekanweke/ocelotapigateway:latest
+
+          name: ocelotapigateway
+          env:
+          - name: "ASPNETCORE_ENVIRONMENT"
+            value: "Development"          
+          ports: 
+            - 
+              containerPort: 80

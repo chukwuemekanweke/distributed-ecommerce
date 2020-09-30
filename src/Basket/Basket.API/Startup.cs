@@ -52,7 +52,7 @@ namespace Basket.API
             string password = Configuration["EventBus:Password"];
             string hostName = Configuration["EventBus:HostName"];
 
-
+            
             services.AddSingleton<IRabbitMQConnection>(sp => {
                 var factory = new ConnectionFactory()
                 {

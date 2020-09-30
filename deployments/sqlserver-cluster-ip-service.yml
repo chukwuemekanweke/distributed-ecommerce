@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sqlserver-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: sqlserver
+  ports:
+    - port: 1433 #I can decide to use different ports, but really there is no need for that in this service
+      targetPort: 1433

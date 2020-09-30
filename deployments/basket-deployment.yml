@@ -15,8 +15,21 @@ spec:
     spec: 
       containers: 
         - 
-          image: chukwuemekanweke/basketapi
+          image: chukwuemekanweke/basketapi:latest
           name: basketapi
+          env:
+            - name: "ASPNETCORE_ENVIRONMENT"
+              value: "Development"
+            - name: "ConnectionStrings__Redis"
+              value: "redis-cluster-ip-service:6379"
+            - name: "EventBus__HostName"
+              value: "rabbitmq-cluster-ip-service"
+            - name: "EventBus__UserName"
+              value: "guest"
+            - name: "EventBus__Password"
+              value: "guest"
+
+              
           ports: 
             - 
               containerPort: 80

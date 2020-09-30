@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: catalog-deployment
+spec: 
+  
+  replicas: 3
+  selector: 
+    matchLabels: 
+      component: catalog
+  template: 
+    metadata: 
+      labels: 
+        component: catalog
+    spec: 
+      containers: 
+        - 
+          image: chukwuemekanweke/catalogapi:latest
+          name: catalogapi
+          env:
+          - name: "ASPNETCORE_ENVIRONMENT"
+            value: "Development"
+          - name: "CatalogDatabaseSettings__ConnectionString"
+            value: "mongodb://mongo-cluster-ip-service:27017"
+          - name: "EventBus__HostName"
+            value: "rabbitmq-cluster-ip-service"
+          - name: "EventBus__UserName"
+            value: "guest"
+          - name: "EventBus__Password"
+            value: "guest"
+          ports: 
+            - 
+              containerPort: 80

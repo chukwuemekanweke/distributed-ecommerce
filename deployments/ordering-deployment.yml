@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: ordering-deployment
+spec: 
+  
+  replicas: 1
+  selector: 
+    matchLabels: 
+      component: ordering
+  template: 
+    metadata: 
+      labels: 
+        component: ordering
+    spec: 
+      containers: 
+        - 
+          image: chukwuemekanweke/orderingapi:latest
+          name: orderingapi
+          env:
+          - name: "ASPNETCORE_ENVIRONMENT"
+            value: "Development"
+          - name: "ConnectionStrings__OrderConnection"
+            value: "server=sqlserver-cluster-ip-service;Database=OrderDb;User Id=sa;Password=SwN12345678"
+          - name: "EventBus__HostName"
+            value: "rabbitmq-cluster-ip-service"
+          - name: "EventBus__UserName"
+            value: "guest"
+          - name: "EventBus__Password"
+            value: "guest"
+          ports: 
+            - 
+              containerPort: 80

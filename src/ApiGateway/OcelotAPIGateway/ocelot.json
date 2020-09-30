@@ -1,3 +1,55 @@
+// {
+
+//   "Routes": [
+
+     
+//     {
+
+//       "DownstreamPathTemplate": "/{everything}",
+//       "DownstreamScheme": "http",
+//       "DownstreamHostAndPorts": [
+//         {
+//           "Host": "basketapi",
+//           "Port": 80
+//         }
+//       ],
+//       "UpstreamPathTemplate": "/basket/{everything}",
+//       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//     },
+//     {
+
+//       "DownstreamPathTemplate": "/{everything}",
+//       "DownstreamScheme": "http",
+//       "DownstreamHostAndPorts": [
+//         {
+//           "Host": "catalogapi",
+//           "Port": 80
+//         }
+//       ],
+//       "UpstreamPathTemplate": "/catalog/{everything}",
+//       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//     },
+
+
+//     {
+
+//       "DownstreamPathTemplate": "/{everything}",
+//       "DownstreamScheme": "http",
+//       "DownstreamHostAndPorts": [
+//         {
+//           "Host": "orderingapi",
+//           "Port": 80
+//         }
+//       ],
+//       "UpstreamPathTemplate": "/order/{everything}",
+//       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//     }
+
+//   ],
+//   "GlobalConfiguration": {
+//   }
+
+// }
 {
 
   "Routes": [
@@ -9,7 +61,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "basketapi",
+          "Host": "basket-cluster-ip-service",
           "Port": 80
         }
       ],
@@ -22,7 +74,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "catalogapi",
+          "Host": "catalog-cluster-ip-service",
           "Port": 80
         }
       ],
@@ -37,7 +89,7 @@
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
-          "Host": "orderingapi",
+          "Host": "ordering-cluster-ip-service",
           "Port": 80
         }
       ],

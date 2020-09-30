@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: sqlserver-deployment
+spec: 
+  
+  replicas: 1
+  selector: 
+    matchLabels: 
+      component: sqlserver
+  template: 
+    metadata: 
+      labels: 
+        component: sqlserver
+    spec: 
+      containers: 
+        - 
+          image: mcr.microsoft.com/mssql/server
+          name: sqlserver
+          env:
+          - name: "SA_PASSWORD"
+            value: "SwN12345678"
+          - name: "ACCEPT_EULA"
+            value: "Y"
+          
+          ports: 
+            - 
+              containerPort: 1433
