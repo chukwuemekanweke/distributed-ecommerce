@@ -15,7 +15,7 @@ spec:
     spec: 
       containers: 
         - 
-          image: chukwuemekanweke/basketapi:latest
+          image: nwekedevregistry.azurecr.io/basketapi:latest
           name: basketapi
           env:
             - name: "ASPNETCORE_ENVIRONMENT"

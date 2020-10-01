@@ -15,7 +15,7 @@ spec:
     spec: 
       containers: 
         - 
-          image: chukwuemekanweke/catalogapi:latest
+          image: nwekedevregistry.azurecr.io/catalogapi:latest
           name: catalogapi
           env:
           - name: "ASPNETCORE_ENVIRONMENT"

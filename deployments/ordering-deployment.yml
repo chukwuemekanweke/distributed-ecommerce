@@ -15,13 +15,13 @@ spec:
     spec: 
       containers: 
         - 
-          image: chukwuemekanweke/orderingapi:latest
+          image: nwekedevregistry.azurecr.io/orderingapi:latest
           name: orderingapi
           env:
           - name: "ASPNETCORE_ENVIRONMENT"
             value: "Development"
           - name: "ConnectionStrings__OrderConnection"
-            value: "server=sqlserver-cluster-ip-service;Database=OrderDb;User Id=sa;Password=SwN12345678"
+            value: "server=sqlserver-cluster-ip-service;Database=OrderDb;User Id=sa;Password=SwN12345678;"
           - name: "EventBus__HostName"
             value: "rabbitmq-cluster-ip-service"
           - name: "EventBus__UserName"

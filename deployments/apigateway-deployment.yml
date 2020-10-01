@@ -15,7 +15,7 @@ spec:
     spec: 
       containers: 
         - 
-          image: chukwuemekanweke/ocelotapigateway:latest
+          image: nwekedevregistry.azurecr.io/ocelotapigateway:latest
 
           name: ocelotapigateway
           env:
