@@ -45,21 +45,21 @@ namespace Ordering.API
             services.AddControllers();
 
 
-            services.AddDbContext<OrderContext>(x => x.UseSqlServer(connectionString), ServiceLifetime.Singleton);
+            services.AddDbContext<OrderContext>(x => x.UseSqlServer(connectionString), ServiceLifetime.Scoped);
 
-           
+
             //required for mediator, that's why we are registering this type of
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
 
 
             //for mediator
-            services.AddScoped(typeof(IOrderRepository), typeof(OrderRepository));
+            services.AddTransient(typeof(IOrderRepository), typeof(OrderRepository));
             //for rabbit mq
             services.AddTransient<IOrderRepository, OrderRepository>();
 
 
             services.AddAutoMapper(typeof(Startup));
-            services.AddMediatR(typeof(CheckoutOrderHandler).GetTypeInfo().Assembly);
+            services.AddMediatR(x => { x.AsScoped(); }, typeof(CheckoutOrderHandler).GetTypeInfo().Assembly);
 
 
             services.AddSwaggerGen(c =>
