@@ -1,106 +1,106 @@
- {
+//  {
 
-   "Routes": [
-
-
-     {
-
-       "DownstreamPathTemplate": "/{everything}",
-       "DownstreamScheme": "http",
-       "DownstreamHostAndPorts": [
-         {
-           "Host": "basketapi",
-           "Port": 80
-         }
-       ],
-       "UpstreamPathTemplate": "/basket/{everything}",
-       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-     },
-     {
-
-       "DownstreamPathTemplate": "/{everything}",
-       "DownstreamScheme": "http",
-       "DownstreamHostAndPorts": [
-         {
-           "Host": "catalogapi",
-           "Port": 80
-         }
-       ],
-       "UpstreamPathTemplate": "/catalog/{everything}",
-       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-     },
+//    "Routes": [
 
 
-     {
+//      {
 
-       "DownstreamPathTemplate": "/{everything}",
-       "DownstreamScheme": "http",
-       "DownstreamHostAndPorts": [
-         {
-           "Host": "orderingapi",
-           "Port": 80
-         }
-       ],
-       "UpstreamPathTemplate": "/order/{everything}",
-       "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-     }
+//        "DownstreamPathTemplate": "/{everything}",
+//        "DownstreamScheme": "http",
+//        "DownstreamHostAndPorts": [
+//          {
+//            "Host": "basketapi",
+//            "Port": 80
+//          }
+//        ],
+//        "UpstreamPathTemplate": "/basket/{everything}",
+//        "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//      },
+//      {
 
-   ],
-   "GlobalConfiguration": {
-   }
-
- }
-
-
-//{
-
-//  "Routes": [
-
-
-//    {
-
-//      "DownstreamPathTemplate": "/{everything}",
-//      "DownstreamScheme": "http",
-//      "DownstreamHostAndPorts": [
-//        {
-//          "Host": "basket-cluster-ip-service",
-//          "Port": 80
-//        }
-//      ],
-//      "UpstreamPathTemplate": "/basket/{everything}",
-//      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-//    },
-//    {
-
-//      "DownstreamPathTemplate": "/{everything}",
-//      "DownstreamScheme": "http",
-//      "DownstreamHostAndPorts": [
-//        {
-//          "Host": "catalog-cluster-ip-service",
-//          "Port": 80
-//        }
-//      ],
-//      "UpstreamPathTemplate": "/catalog/{everything}",
-//      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
-//    },
+//        "DownstreamPathTemplate": "/{everything}",
+//        "DownstreamScheme": "http",
+//        "DownstreamHostAndPorts": [
+//          {
+//            "Host": "catalogapi",
+//            "Port": 80
+//          }
+//        ],
+//        "UpstreamPathTemplate": "/catalog/{everything}",
+//        "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//      },
 
 
-//    {
+//      {
 
-//      "DownstreamPathTemplate": "/{everything}",
-//      "DownstreamScheme": "http",
-//      "DownstreamHostAndPorts": [
-//        {
-//          "Host": "ordering-cluster-ip-service",
-//          "Port": 80
-//        }
-//      ],
-//      "UpstreamPathTemplate": "/order/{everything}",
-//      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//        "DownstreamPathTemplate": "/{everything}",
+//        "DownstreamScheme": "http",
+//        "DownstreamHostAndPorts": [
+//          {
+//            "Host": "orderingapi",
+//            "Port": 80
+//          }
+//        ],
+//        "UpstreamPathTemplate": "/order/{everything}",
+//        "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+//      }
+
+//    ],
+//    "GlobalConfiguration": {
 //    }
 
-//  ],
-//  "GlobalConfiguration": {
 //  }
 
-//}
+
+{
+
+ "Routes": [
+
+
+   {
+
+     "DownstreamPathTemplate": "/{everything}",
+     "DownstreamScheme": "http",
+     "DownstreamHostAndPorts": [
+       {
+         "Host": "basket-cluster-ip-service",
+         "Port": 80
+       }
+     ],
+     "UpstreamPathTemplate": "/basket/{everything}",
+     "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+   },
+   {
+
+     "DownstreamPathTemplate": "/{everything}",
+     "DownstreamScheme": "http",
+     "DownstreamHostAndPorts": [
+       {
+         "Host": "catalog-cluster-ip-service",
+         "Port": 80
+       }
+     ],
+     "UpstreamPathTemplate": "/catalog/{everything}",
+     "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+   },
+
+
+   {
+
+     "DownstreamPathTemplate": "/{everything}",
+     "DownstreamScheme": "http",
+     "DownstreamHostAndPorts": [
+       {
+         "Host": "ordering-cluster-ip-service",
+         "Port": 80
+       }
+     ],
+     "UpstreamPathTemplate": "/order/{everything}",
+     "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ]
+   }
+
+ ],
+ "GlobalConfiguration": {
+ }
+
+}
