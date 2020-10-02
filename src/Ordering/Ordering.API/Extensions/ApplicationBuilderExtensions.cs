@@ -17,7 +17,10 @@ namespace Ordering.API.Extensions
 
 
         public static IApplicationBuilder UseRabbitListener(this IApplicationBuilder app)
-        {            Listener = app.ApplicationServices.GetService<EventBusRabbitMQConsumer>();
+        { 
+            //Listener = app.ApplicationServices.GetService<EventBusRabbitMQConsumer>();
+
+            Listener = app.ApplicationServices.CreateScope().ServiceProvider.GetService<EventBusRabbitMQConsumer>();
             var life = app.ApplicationServices.GetService<IHostApplicationLifetime>();
 
             life.ApplicationStarted.Register(OnStarted);

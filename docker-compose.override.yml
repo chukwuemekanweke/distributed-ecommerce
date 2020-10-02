@@ -75,7 +75,7 @@ services:
     restart: on-failure
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings__OrderConnection=server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678"
+      - "ConnectionStrings__OrderConnection=server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678;"
       - "EventBus__HostName=rabbitmq"
       - "EventBus__UserName=guest"
       - "EventBus__Password=guest"
